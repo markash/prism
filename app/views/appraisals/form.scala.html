@@ -1,0 +1,27 @@
+@(inputForm: Form[Appraisal])
+
+@import helper._
+
+@main("Appraisal") {
+	
+	<article class="full-block clearfix">
+		<div class="article-container">
+			<header>
+				<h2>Appraisal</h2>
+			</header>
+			<section>
+				<div class="tab default-tab" id="tab0">
+				@helper.form(action = routes.Appraisals.submit()) {
+                    @select(
+                        inputForm("period.id"),
+                        AppraisalPeriod.options,
+                        '_label -> "Period",
+                        '_default -> "-- Select period --"
+                    )
+					<button type="submit">Submit</button>
+				}
+				</div>
+			</section>
+		</div>
+	</article>
+}

@@ -1,0 +1,25 @@
+@(inputForm: Form[AppraisalPeriod])
+
+@import helper._
+
+@main("Appraisal Period") {
+	
+	<article class="full-block clearfix">
+		<div class="article-container">
+			<header>
+				<h2>Appraisal Period</h2>
+			</header>
+			<section>
+				<div class="tab default-tab" id="tab0">
+				@helper.form(action = routes.AppraisalPeriods.save()) {
+					@inputText(inputForm("starts"), '_label -> "Start date:", 'class -> "datepicker small")
+					@inputText(inputForm("ends"), '_label -> "End date:", 'class -> "datepicker small")
+					
+					<button type="submit">Submit</button> or 
+            		<a href="@routes.AppraisalPeriods.create()" class="btn">Cancel</a> 
+				}
+				</div>
+			</section>
+		</div>
+	</article>
+}

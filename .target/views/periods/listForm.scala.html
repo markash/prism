@@ -1,0 +1,37 @@
+@(periods: List[AppraisalPeriod])
+
+@main("Appraisal") {
+	
+	<article class="full-block clearfix">
+		<div class="article-container">
+			<header>
+				<h2>Appraisal Periods</h2>
+			</header>
+			<section>
+				<div class="tab default-tab" id="tab0">
+				<form class="table-form">
+					<table>
+					<thead>
+						<tr>
+						  <td style="text-align: left"><strong>#</strong></td>
+							<td style="text-align: left"><strong>Section</strong></td>
+							<td style="text-align: left"><strong>Description</strong></td>
+							<td><strong>Score</strong></td>
+						</thead>
+					</thead>
+					<tbody>
+					 @for(period <- periods) {
+						<tr>
+						  <td style="text-align: left">@period.id</td>
+							<td style="text-align: left">@period.starts</td>
+							<td style="text-align: left">@period.ends</td>
+							<td>@period.closed</td>
+						</tr>
+						}
+					</tbody>
+					</table>
+				</form>
+			</section>
+		</div>
+	</article>
+}

@@ -1,0 +1,2 @@
+export PLAY_HOME=/home/marka/SDE/servers/play-2.0.4
+$PLAY_HOME/scala-play clean

@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+
+# Create appraisal period
+GET 	/appraisal/period/new			controllers.AppraisalPeriods.create()
+POST	/appraisal/period				controllers.AppraisalPeriods.save()
+
+# Edit appraisal period
+GET     /appraisal/period/:id       	controllers.AppraisalPeriods.edit(id:Long)
+POST    /appraisal/period/:id       	controllers.AppraisalPeriods.update(id:Long)
+
+# Delete an appraisal period
+POST    /appraisal/period/:id/delete	controllers.AppraisalPeriods.delete(id:Long)
+
+# Remove / change
+GET     /appraisal/item             controllers.Appraisals.blank()
+POST    /appraisal/item             controllers.Appraisals.submit()
+GET     /appraisal/items            controllers.Appraisals.list()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

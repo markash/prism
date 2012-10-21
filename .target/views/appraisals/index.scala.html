@@ -1,0 +1,35 @@
+@(appraisal: Appraisal)
+
+@main("Appraisal") {
+	
+	<article class="full-block clearfix">
+		<div class="article-container">
+			<header>
+				<h2>Appraisal @appraisal.id</h2>
+			</header>
+			<section>
+				<div class="tab default-tab" id="tab0">
+				<form class="table-form">
+					<table>
+					<thead>
+						<tr>
+							<td style="text-align: left"><strong>Section</strong></td>
+							<td style="text-align: left"><strong>Description</strong></td>
+							<td><strong>Score</strong></td>
+						</thead>
+					</thead>
+					<tbody>
+					@for(a <- appraisal.items) {
+						<tr>
+							<td style="text-align: left">@a.description</td>
+							<td style="text-align: left">@a.description</td>
+							<td>@a.score</td>
+						</tr>
+					}
+					</tbody>
+					</table>
+				</form>
+			</section>
+		</div>
+	</article>
+}
