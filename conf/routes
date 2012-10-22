@@ -5,6 +5,11 @@
 # Home page
 GET		/								controllers.Application.index()
 
+# Profile
+GET 	/profile/:email					controllers.Profiles.view(email:String)
+GET		/profile/:email/edit			controllers.Profiles.edit(email:String)
+POST	/profile/:email					controllers.Profiles.update(email:String)
+
 # Authentication
 GET     /login                          controllers.Application.login
 POST    /login                          controllers.Application.authenticate

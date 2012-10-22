@@ -1,0 +1,35 @@
+@(email: String, inputForm: Form[UserRegistration], user: User)(implicit flash: Flash)
+
+@import helper._
+
+@main(user) {
+	
+	<article class="full-block clearfix">
+		<div class="article-container">
+			<header>
+				<h2>Profile</h2>
+			</header>
+			<section>
+				<div class="tab default-tab" id="tab0">
+				@helper.form(action = routes.Profiles.update(email)) {
+					@inputForm.globalError.map { error =>
+						<div class="notification error">
+							<a href="#" class="close-notification" title="Hide Notification" rel="tooltip">x</a>
+							<p><strong>Error notification</strong> @error.message</p>
+						</div>
+		            }
+		            
+					@inputText(inputForm("email"), '_label -> "Email:", 'class -> "small")
+					@inputPassword(inputForm("password"), '_label -> "Password:", 'class -> "small")
+					@inputPassword(inputForm("confirmation"), '_label -> "Confirm:", 'class -> "small")
+					@inputText(inputForm("name"), '_label -> "Name:", 'class -> "small")
+					@inputText(inputForm("surname"), '_label -> "Surname:", 'class -> "small")
+					
+					<button type="submit">Submit</button>
+					<a href="@routes.Profiles.view(email)" class="btn">Cancel</a>
+				}
+				</div>
+			</section>
+		</div>
+	</article>
+}

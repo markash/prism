@@ -6,7 +6,7 @@
 		<a href="#" title="Account Settings and Profile Page">@(user.name + " " + user.surname)</a>
 		<em>Administrator</em>
 		<ul>
-			<li><a class="button-link" href="#" title="View website" rel="tooltip">view website</a></li>
+			<li><a class="button-link" href="@routes.Profiles.edit(user.email)" title="Profile" rel="tooltip">profile</a></li>
 			<li><a class="button-link" href="@routes.Application.logout" title="Logout" rel="tooltip">logout</a></li>
 		</ul>
 	</div>
