@@ -1,11 +1,11 @@
-@(appraisal: Appraisal)
+@(periods: List[AppraisalPeriod], user: User)
 
-@main(Application.demo) {
+@main(user) {
 	
 	<article class="full-block clearfix">
 		<div class="article-container">
 			<header>
-				<h2>Appraisal</h2>
+				<h2>Appraisal Periods</h2>
 			</header>
 			<section>
 				<div class="tab default-tab" id="tab0">
@@ -20,12 +20,14 @@
 						</thead>
 					</thead>
 					<tbody>
+					 @for(period <- periods) {
 						<tr>
-						  <td style="text-align: left">@appraisal.id</td>
-							<td style="text-align: left">@appraisal.periodId</td>
-							<td style="text-align: left">@appraisal.periodId</td>
-							<td>@appraisal.periodId</td>
+						  <td style="text-align: left">@period.id</td>
+							<td style="text-align: left">@period.starts</td>
+							<td style="text-align: left">@period.ends</td>
+							<td>@period.closed</td>
 						</tr>
+						}
 					</tbody>
 					</table>
 				</form>

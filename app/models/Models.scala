@@ -32,6 +32,12 @@ object AppraisalPeriod {
 	    case id~starts~ends~closed=>AppraisalPeriod(id, starts, ends, closed)
 	  }
 	}
+	def list(): List[AppraisalPeriod] = {
+	  DB.withConnection { implicit connection =>
+	    SQL("select id, starts, ends, closed from appraisal_period").as(AppraisalPeriod.simple *)
+	  }
+	}
+	
 	def findById(id: Long): Option[AppraisalPeriod] = {
 	  DB.withConnection { implicit connection =>
 	    SQL("select id, starts, ends, closed from appraisal_period where id = {id}").on('id -> id).as(AppraisalPeriod.simple.singleOpt)

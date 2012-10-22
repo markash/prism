@@ -1,21 +1,22 @@
-@(id: Long, inputForm: Form[AppraisalPeriod])
+@(inputForm: Form[AppraisalPeriod], user: User)
 
 @import helper._
 
-@main(Application.demo) {
+@main(user) {
 	
 	<article class="full-block clearfix">
 		<div class="article-container">
 			<header>
-				<h2>Appraisal Period @id</h2>
+				<h2>Appraisal Period</h2>
 			</header>
 			<section>
 				<div class="tab default-tab" id="tab0">
-				@helper.form(action = routes.AppraisalPeriods.update(id)) {
+				@helper.form(action = routes.AppraisalPeriods.save()) {
 					@inputText(inputForm("starts"), '_label -> "Start date:", 'class -> "datepicker small")
 					@inputText(inputForm("ends"), '_label -> "End date:", 'class -> "datepicker small")
 					
-					<button type="submit">Submit</button>
+					<button type="submit">Submit</button> or 
+            		<a href="@routes.AppraisalPeriods.create()" class="btn">Cancel</a> 
 				}
 				</div>
 			</section>

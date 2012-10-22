@@ -3,6 +3,12 @@
 # ~~~~
 
 # Home page
+GET		/								controllers.Application.index()
+
+# Authentication
+GET     /login                          controllers.Application.login
+POST    /login                          controllers.Application.authenticate
+GET     /logout                         controllers.Application.logout
 
 # Create appraisal period
 GET 	/appraisal/period/new			controllers.AppraisalPeriods.create()
@@ -15,10 +21,12 @@ POST    /appraisal/period/:id       	controllers.AppraisalPeriods.update(id:Long
 # Delete an appraisal period
 POST    /appraisal/period/:id/delete	controllers.AppraisalPeriods.delete(id:Long)
 
+GET		/appraisal/periods				controllers.AppraisalPeriods.list()
+
 # Remove / change
-GET     /appraisal/item             controllers.Appraisals.blank()
-POST    /appraisal/item             controllers.Appraisals.submit()
-GET     /appraisal/items            controllers.Appraisals.list()
+GET     /appraisal/item             	controllers.Appraisals.blank()
+POST    /appraisal/item             	controllers.Appraisals.submit()
+GET     /appraisal/items            	controllers.Appraisals.list()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

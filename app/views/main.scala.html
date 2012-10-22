@@ -1,15 +1,19 @@
-@(title: String)(content: Html)
+@(user: User)(content: Html)
 
 @import tags._
 
 <!DOCTYPE html>
-
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <html>
     <head>
-        <title>@title</title>
-		
+        <title>@Application.title</title>
+        <meta name="description" content="">
+		<meta name="author" content="Mark P Ashworth">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-		<!-- CSS Styles -->
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("css/style.css")">
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("css/colors.css")">
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("css/jquery.tipsy.css")">
@@ -22,44 +26,25 @@
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("css/jquery.visualize.css")">
 
 		<!-- Google WebFonts -->
-		    <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-
-		    <script src="@routes.Assets.at("js/libs/modernizr-1.7.min.js")" type="text/javascript"></script>
-		
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+		<script src="@routes.Assets.at("js/libs/modernizr-1.7.min.js")" type="text/javascript"></script>
 		
         <link rel="apple-touch-icon" href="@routes.Assets.at("img/apple-touch-icon.png")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("img/favicon.png")">
-        
     </head>
     <body>
 		<!-- Fixed Layout Wrapper -->
 		<div class="fixed-wraper">
-
-			<!-- Aside Block -->
 			<section role="navigation">
-				<!-- Header with logo and headline -->
 				<header>
 					<a href="/" title="Back to Homepage"></a>
-					<h1>Lorem ipsum dolor sit amet!</h1>
+					<h1>Excellence!!</h1>
 				</header>
 				
-				<!-- User Info -->
-				<section id="user-info">
-					<img src="img/sample_user.png" alt="Sample User Avatar">
-					<div>
-						<a href="#" title="Account Settings and Profile Page">Joe Tester</a>
-						<em>Administrator</em>
-						<ul>
-							<li><a class="button-link" href="#" title="This is my title!" rel="tooltip">view website</a></li>
-							<li><a class="button-link" href="#" title="And this is Sparta!" rel="tooltip">logout</a></li>
-						</ul>
-					</div>
-				</section>
-				<!-- /User Info -->
-				
-				<!-- Main Navigation -->
-				
-				<!-- /Main Navigation -->
+				@if(user.name != "demo") {
+				@userInfo(user)
+				}
+				@nav(Application.menu)
 			</section>
 		
 			<!-- Main Content -->

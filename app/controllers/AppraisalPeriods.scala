@@ -12,7 +12,7 @@ import views.html.periods._
 import models._
 
 
-object AppraisalPeriods extends Controller {
+object AppraisalPeriods extends Controller with Secured {
 
   val inputForm = Form(
     mapping(
@@ -23,19 +23,28 @@ object AppraisalPeriods extends Controller {
     )(AppraisalPeriod.apply)(AppraisalPeriod.unapply)
   )
   
-  def create = Action {
-    Ok(createForm.render(inputForm))
+  def list = IsAuthenticated { username => _ =>
+    User.findByEmail(username).map { user =>
+      Ok(periods.list(AppraisalPeriod.list(), user))
+    }.getOrElse(Forbidden)
   }
   
-  def save = Action { implicit request =>
+  def create = IsAuthenticated { username => _ =>
+    User.findByEmail(username).map { user =>
+      Ok(periods.create(inputForm, user))
+    }.getOrElse(Forbidden)
+  }
+  
+  def save = IsAuthenticated { username => implicit request =>
     inputForm.bindFromRequest.fold(
-      formWithErrors => BadRequest(createForm.render(formWithErrors)),
+      errors => BadRequest,
       period => {
         Ok(viewForm.render(AppraisalPeriod.insert(period)))
       }
-    )
+    ) 
   }
   
+
   def edit(id: Long) = Action {
     AppraisalPeriod.findById(id).map { period =>
       Ok(editForm.render(id, inputForm.fill(period)))
